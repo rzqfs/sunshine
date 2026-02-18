@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 20th Windi Yulianti</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#000;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* STAR BACKGROUND */
+body::before{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    background:radial-gradient(white 1px, transparent 1px);
+    background-size:40px 40px;
+    animation:stars 60s linear infinite;
+    opacity:0.15;
+}
+
+@keyframes stars{
+    from{transform:translateY(0);}
+    to{transform:translateY(-1000px);}
+}
+
+/* ENVELOPE */
+#envelope-container{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#000;
+}
+
+.envelope{
+    width:300px;
+    height:200px;
+    background:#111;
+    position:relative;
+    cursor:pointer;
+    transition:0.5s;
+    border-radius:10px;
+    box-shadow:0 0 30px rgba(255,255,255,0.1);
+}
+
+.envelope::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    border-left:150px solid transparent;
+    border-right:150px solid transparent;
+    border-bottom:100px solid #222;
+}
+
+.envelope.open{
+    transform:scale(0);
+}
+
+/* CONTENT */
+#content{
+    display:none;
+    padding:50px 20px;
+    text-align:center;
+}
+
+h1{
+    font-family:'Playfair Display',serif;
+    font-size:2.5em;
+    margin-bottom:20px;
+}
+
+.message{
+    max-width:700px;
+    margin:auto;
+    line-height:1.8;
+    font-size:1em;
+    opacity:0;
+    animation:fadeIn 3s forwards;
+}
+
+@keyframes fadeIn{
+    to{opacity:1;}
+}
+
+/* GALLERY */
+.gallery{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin:50px 0;
+    flex-wrap:wrap;
+}
+
+.gallery img{
+    width:250px;
+    border-radius:15px;
+    border:3px solid rgba(255,255,255,0.2);
+    box-shadow:0 0 20px rgba(255,255,255,0.2);
+    transition:0.4s;
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+}
+
+/* QUESTION */
+.question{
+    margin-top:50px;
+    font-size:1.2em;
+}
+
+input{
+    padding:10px;
+    width:250px;
+    margin-top:15px;
+    border:none;
+    border-radius:20px;
+    text-align:center;
+}
+
+button{
+    padding:10px 25px;
+    margin-top:15px;
+    border:none;
+    border-radius:20px;
+    background:white;
+    color:black;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ccc;
+}
+
+/* SEND ANIMATION */
+#sent{
+    margin-top:20px;
+    opacity:0;
+    transform:translateY(20px);
+}
+
+#sent.show{
+    animation:send 2s forwards;
+}
+
+@keyframes send{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* FOOTER */
+footer{
+    margin-top:80px;
+    opacity:0.6;
+    font-size:0.9em;
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+    <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<div id="envelope-container">
+    <div class="envelope" onclick="openLetter()"></div>
+</div>
+
+<div id="content">
+    <h1>Happy 20th Birthday 🤍</h1>
+
+    <div class="message">
+        <p>
+        happy birthday my wine! 🎂 <br><br>
+        jika kamu baca pesan ini di tanggal 1 july 2026 artinya kamu menginjak usia 20 tahun, semoga panjang umur, sehat selalu, dipermudah segala hal yang akan kamu hadapi, dilapangkan segala rezeki, dan hal baik lainnya, pesan yang aku tulis ini hanya secercah doa dan harapan untukmu, aku tidak bisa memberimu kado spesial atau hal mewah lainnya, namun doaku selalu yang terbaik untukmu.
+        <br><br>
+        aku harap di usiamu yang beranjak dewasa, kamu jadi perempuan yang lebih tangguh, lebih baik, dan lebih sabar dari hari lalu.
+        <br><br>
+        juga aku berharap kamu selalu bersama di dalam suka dan duka di dalam cerita kita, maaf jika aku hanyalah laki-laki sederhana yang tidak punya apa-apa untuk kamu banggakan, hanya ini yang bisa aku lakukan di dalam keterbatasan.
+        <br><br>
+        terima kasih banyak telah menjadi bagian dari hidupku yang mungkin bisa di bilang gitu-gitu aja, tapi aku harap pesan singkat ini dapat membuatmu merasa tenang bahwa aku tidak pernah pura-pura menaruh rasa.
+        <br><br>
+        i love u so much windi yulianti, and wish u all the best ✨
+        </p>
+    </div>
+
+    <div class="gallery">
+        <img src="foto1.jpg">
+        <img src="foto2.jpg">
+        <img src="foto3.jpg">
+    </div>
+
+    <div class="question">
+        <p>Di usia 20 ini, apa harapan terbesarmu untuk masa depan kita? 💫</p>
+        <input type="text" id="reply" placeholder="Tulis harapanmu...">
+        <br>
+        <button onclick="sendMessage()">Kirim 💌</button>
+        <div id="sent">Pesan terkirim dengan penuh cinta ✨</div>
+    </div>
+
+    <footer>
+        made with ❤️ for windi yulianti
+    </footer>
+</div>
+
+<script>
+function openLetter(){
+    document.querySelector(".envelope").classList.add("open");
+    setTimeout(()=>{
+        document.getElementById("envelope-container").style.display="none";
+        document.getElementById("content").style.display="block";
+    },500);
+}
+
+function sendMessage(){
+    document.getElementById("sent").classList.add("show");
+}
+</script>
+
+</body>
+</html>
